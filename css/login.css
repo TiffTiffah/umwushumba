@@ -1,0 +1,25 @@
+/* styles.css */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    margin-bottom: 30px;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.btn-block {
+    border-radius: 5px;
+}

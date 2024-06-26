@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css"> <!-- Your custom CSS styles -->
+    <link rel="stylesheet" href="assets/icons/boxicons-master/css/boxicons.css">
+    <link rel="stylesheet" href="assets/icons/fontawesome/css/all.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header-title">
+            <h3>Welcome <span>Farmer!</span></h3>
+        </div>
+        <div class="side-icons">
+            <a href="#" class="icon" id="addAnimalLink" data-bs-toggle="modal" data-bs-target="#myModal">
+                <i class='bx bx-add-to-queue'></i>
+            </a>
+            <a href="#" class="icon"><i class='bx bx-bell'></i></a>
+            <a href="#" class="icon"><i class='bx bx-envelope'></i></a>
+            <a href="#" class="icon"><i class='bx bx-user'></i></a>
+        </div>
+    </header>
+
+    <section class="sidebar">
+        <div class="logo">
+            <img src="umwushumba.png" alt="logo">
+            <!-- <h3>UMWUSHUMBA</h3> -->
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="dashboard.html" class="active"><i class='bx bx-home'></i>Dashboard</a></li>
+                <li><a href="animals.html"><i class="fa-solid fa-cow"></i>Animals</a></li>
+                <li><a href="tasks.html"><i class='bx bx-task'></i>Tasks</a></li>
+                <li><a href="equipments.html"><i class='bx bx-wrench'></i>Equipments</a></li>
+                <li><a href="#"><i class='bx bx-group'></i>Staff</a></li>
+                <li><a href="#"><i class='bx bx-bar-chart-square'></i>Reports</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <main class="main">
+        <div class="container">
+            <div class="stats">
+                <div class="card">
+                    Total Animals<br><br>
+                    <h2>100</h2>
+                </div>
+                <div class="card">
+                    Total Dairy Cows<br><br>
+                    <h2>60</h2>
+                </div>
+                <div class="card">
+                    Total Pigs<br><br>
+                    <h2>40</h2>
+                </div>
+                <div class="card">
+                    Baby Animals<br><br>
+                    <h2>40</h2>
+                </div>
+                <div class="card">
+                    Health Status
+                    <h4>Healthy: 94</h4>
+                    <h4>Sick: 6</h4>
+                </div>
+            </div>
+
+            <div class="lv-2">
+                <div class="card">
+                    <h4>Animal Distribution</h4>
+                    <canvas id="animalDistributionChart"></canvas>
+                </div>
+                <div class="card">
+                    <h4>Milk Production Line Graph</h4>
+                    <canvas id="milkProductionChart"></canvas>
+                </div>
+            </div>
+
+            
+
+            <div class="lv-4">
+                <div class="card">
+                    <h4>Expenses Column Bar Chart</h4>
+                    <canvas id="expensesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="lv-4">
+                <div class="card">
+                    <h4>Animals Inventory</h4>
+                </div>
+            </div>
+
+
+        <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Animal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addAnimalForm">
+                    <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+
+                <label for="tag_number">Tag Number:</label>
+                <input type="text" id="tag_number" name="tag_number"><br><br>
+
+                <label for="tag_color">Tag Color:</label>
+                <input type="text" id="tag_color" name="tag_color"><br><br>
+
+                <label for="registry_number">Registry Number:</label>
+                <input type="text" id="registry_number" name="registry_number"><br><br>
+
+                <label for="other_tag_number">Other Tag Number:</label>
+                <input type="text" id="other_tag_number" name="other_tag_number"><br><br>
+
+                <label for="description">Description:</label><br>
+                <textarea id="description" name="description" rows="4"></textarea><br><br>
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select><br><br>
+
+                <label for="birth_date">Birth Date:</label>
+                <input type="date" id="birth_date" name="birth_date"><br><br>
+
+                <label for="type">Type:</label>
+                <input type="text" id="type" name="type"><br><br>
+
+                <label for="breed">Breed:</label>
+                <input type="text" id="breed" name="breed"><br><br>
+
+                <label for="coloring">Coloring:</label>
+                <input type="text" id="coloring" name="coloring"><br><br>
+
+                <label for="weight">Weight:</label>
+                <input type="number" id="weight" name="weight"><br><br>
+
+                <label for="birth_date">Last Treatment Date:</label>
+                <input type="date" id="birth_date" name="birth_date"><br><br>
+
+
+                    <button type="submit" class="btn btn-primary mt-3">Add Animal</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Doughnut Chart for Animal Distribution
+    const animalDistributionCtx = document.getElementById('animalDistributionChart').getContext('2d');
+
+    const animalDistributionData = {
+        labels: ['Cows', 'Pigs'],
+        datasets: [{
+            label: 'Animal Distribution',
+            data: [60, 40], // Update with actual data percentages or values
+            backgroundColor: ['rgb(31, 143, 59,0.5)', 'rgb(59, 200, 50,0.5)'], // Colors for cows and pigs
+            borderColor: ['rgb(31, 143, 59)', 'rgb(59, 200, 50)'], // Border colors for cows and pigs
+            borderWidth: 1, // Border width for segments
+            hoverOffset: 4 // Add hover offset for better visibility
+        }]
+    };
+
+    const animalDistributionOptions = {
+        responsive: true,
+        cutout: '70%', // Adjust the cutout percentage here (e.g., '80%')
+        plugins: {
+            legend: {
+                position: 'bottom',
+                align: 'center',
+                labels: {
+                    padding: 20,
+                    boxWidth: 12,
+                    font: {
+                        size: 14
+                    }
+                }
+            },
+            tooltip: {
+                enabled: true,
+                padding: 10,
+                cornerRadius: 5,
+                caretSize: 8
+            }
+        }
+    };
+
+    const animalDistributionChart = new Chart(animalDistributionCtx, {
+        type: 'doughnut',
+        data: animalDistributionData,
+        options: animalDistributionOptions
+    });
+
+    // Line Chart for Milk Production
+    const milkProductionCtx = document.getElementById('milkProductionChart').getContext('2d');
+
+    const milkProductionData = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+        datasets: [{
+            label: 'Milk Production (liters)',
+            data: [1500, 1700, 1600, 1800, 2000, 2100],
+            borderColor: 'rgb(31, 143, 59)',
+            backgroundColor: 'rgb(31, 143, 59,0.5)',
+            fill: true,
+            tension: 0.4
+        }]
+    };
+
+    const milkProductionOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top'
+            },
+            tooltip: {
+                enabled: true
+            }
+        },
+        scales: {
+            x: {
+                display: true,
+                title: {
+                    display: true,
+                    text: 'Month'
+                }
+            },
+            y: {
+                display: true,
+                title: {
+                    display: true,
+                    text: 'Liters'
+                }
+            }
+        }
+    };
+
+    const milkProductionChart = new Chart(milkProductionCtx, {
+        type: 'line',
+        data: milkProductionData,
+        options: milkProductionOptions
+    });
+});
+
+// Column Bar Chart for Expenses
+const expensesCtx = document.getElementById('expensesChart').getContext('2d');
+
+const expensesData = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+    datasets: [{
+        label: 'Treatment',
+        data: [500, 600, 550, 700, 650, 800], // Update with actual treatment expenses data
+        backgroundColor: 'rgb(31, 143, 59, 0.6)', // Color for treatment bars
+        borderColor: 'rgb(31, 143, 59, 1)', // Border color for treatment bars
+        borderWidth: 1,
+        barThickness: 40 // Adjust bar thickness for better visibility
+    }, {
+        label: 'Equipments',
+        data: [300, 350, 400, 380, 420, 450], // Update with actual equipment expenses data
+        backgroundColor: 'rgba(54, 162, 235, 0.6)', // Color for equipment bars
+        borderColor: 'rgba(54, 162, 235, 1)', // Border color for equipment bars
+        borderWidth: 1,
+        barThickness: 40 // Adjust bar thickness for better visibility
+    }, {
+        label: 'Feeds',
+        data: [200, 250, 280, 300, 270, 320], // Update with actual feed expenses data
+        backgroundColor: 'rgba(75, 192, 192, 0.6)', // Color for feed bars
+        borderColor: 'rgba(75, 192, 192, 1)', // Border color for feed bars
+        borderWidth: 1,
+        barThickness: 40 // Adjust bar thickness for better visibility
+    }]
+};
+
+const expensesOptions = {
+    responsive: true,
+    plugins: {
+        legend: {
+            position: 'top'
+        },
+        tooltip: {
+            enabled: true
+        }
+    },
+    scales: {
+        x: {
+            stacked: false, // Do not stack bars on x-axis
+            title: {
+                display: true,
+                text: 'Month'
+            }
+        },
+        y: {
+            beginAtZero: true, // Start y-axis from zero
+            title: {
+                display: true,
+                text: 'Expenses'
+            }
+        }
+    }
+};
+
+const expensesChart = new Chart(expensesCtx, {
+    type: 'bar',
+    data: expensesData,
+    options: expensesOptions
+});
+// Handle modal events
+const myModal = new bootstrap.Modal(document.getElementById('myModal'));
+
+// Open modal when clicking the "Add" icon
+const addAnimalLink = document.getElementById('addAnimalLink');
+addAnimalLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    myModal.show();
+});
+
+// Handle form submission
+const form = document.getElementById('addAnimalForm');
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(form);
+    for (let [key, value] of formData.entries()) {
+        console.log(key + ': ' + value); // Replace with your form submission logic
+    }
+    myModal.hide(); // Close modal after form submission
+});
+
+    </script>
+</body>
+</html>
