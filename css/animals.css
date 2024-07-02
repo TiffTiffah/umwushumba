@@ -1,0 +1,126 @@
+/* ------------------------------------------ANIMALS------------------------------------- */
+/* Poppins font */
+@font-face {
+    font-family: 'Poppins';
+    src: url('/assets/fonts/Poppins/Poppins-Light.ttf') format('truetype');
+}
+/* Montserrat font */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+/* DM Sans font */
+@font-face {
+    font-family: 'DM Sans';
+    src: url('/assets/fonts/DM_Sans/DMSans-VariableFont_opsz\,wght.ttf') format('truetype');
+}
+
+/* Button styles */
+.add-animal-btn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.add-animal-btn:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+.add-animal-btn a {
+    color: inherit; /* Inherit color from the parent (.add-animal-btn) */
+    text-decoration: none;
+}
+
+/* Styling for the Animals Section */
+#animals-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#animals-section h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.table a {
+    color: black; 
+    text-decoration: none; 
+}
+
+.table th {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.table-striped tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Dropdown menu styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}
+.dropdown-content a:last-child{
+    border-top: 1px solid #ddd;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropbtn {
+    font-size: 13px;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    text-align: right;
+}
+.trash-icon {
+    color: rgb(255, 86, 86);
+}

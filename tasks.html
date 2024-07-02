@@ -6,11 +6,7 @@
     <link rel="stylesheet" href="css/tasks.css"> <!-- Your custom CSS styles -->
     <link rel="stylesheet" href="assets/icons/boxicons-master/css/boxicons.css">
     <link rel="stylesheet" href="assets/icons/fontawesome/css/all.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js library -->
     <title>Document</title>
 </head>
@@ -40,7 +36,7 @@
                 <li><a href="animals.html"><i class="fa-solid fa-cow"></i>Animals</a></li>
                 <li><a href="tasks.html"  class="active"><i class='bx bx-task'></i>Tasks</a></li>
                 <li><a href="equipments.html"><i class='bx bx-wrench'></i>Equipments</a></li>
-                <li><a href="#"><i class='bx bx-group'></i>Staff</a></li>
+                <li><a href="staff.html"><i class='bx bx-group'></i>Staff</a></li>
                 <li><a href="#"><i class='bx bx-bar-chart-square'></i>Reports</a></li>
             </ul>
         </div>
@@ -82,35 +78,35 @@
                         <div class="task">
                           <input class="task-item" name="task" type="checkbox" id="item-1" checked>
                           <label for="item-1">
-                            <span class="label-text">Dashboard Design Implementation</span>
+                            <span class="label-text">Checking animals health </span>
                           </label>
                           
                         </div>
                         <div class="task">
                           <input class="task-item" name="task" type="checkbox" id="item-2" checked>
                           <label for="item-2">
-                            <span class="label-text">Create a userflow</span>
+                            <span class="label-text">Feeding the cows</span>
                           </label>
                           
                         </div>
                         <div class="task">
                           <input class="task-item" name="task" type="checkbox" id="item-3">
                           <label for="item-3">
-                            <span class="label-text">Application Implementation</span>
+                            <span class="label-text">Vaccination</span>
                           </label>
                           
                         </div>
                         <div class="task">
                           <input class="task-item" name="task" type="checkbox" id="item-4">
                           <label for="item-4">
-                            <span class="label-text">Create a Dashboard Design</span>
+                            <span class="label-text">Cleaning of the cow shades</span>
                           </label>
                           
                         </div>
                         <div class="task">
                           <input class="task-item" name="task" type="checkbox" id="item-5">
                           <label for="item-5">
-                            <span class="label-text">Create a Web Application Design</span>
+                            <span class="label-text">Collecting cow's feed</span>
                           </label>
                           
                         </div>
@@ -120,28 +116,28 @@
                         <div class="task">
                           <input class="task-item" name="task" type="checkbox" id="item-7">
                           <label for="item-7">
-                            <span class="label-text">Dashboard Design Implementation</span>
+                            <span class="label-text">Cleaning of the cow shades</span>
                           </label>
                           
                         </div>
                         <div class="task">
                           <input class="task-item" name="task" type="checkbox" id="item-8">
                           <label for="item-8">
-                            <span class="label-text">Create a userflow</span>
+                            <span class="label-text">Collecting cow's feed</span>
                           </label>
                           
                         </div>
                         <div class="task">
                           <input class="task-item" name="task" type="checkbox" id="item-9">
                           <label for="item-9">
-                            <span class="label-text">Application Implementation</span>
+                            <span class="label-text">Calves care</span>
                           </label>
                           
                         </div>
                         <div class="task">
                           <input class="task-item" name="task" type="checkbox" id="item-10">
                           <label for="item-10">
-                            <span class="label-text">Create a Dashboard Design</span>
+                            <span class="label-text">Cleaning of the cow shades</span>
                           </label>
                           
                         </div>
@@ -178,6 +174,8 @@
 
         </div>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
 
 
@@ -260,53 +258,49 @@ generateCalendar();
 
 
 //task progress chart
+document.addEventListener("DOMContentLoaded", function() {
+      var options = {
+        chart: {
+          height: 250,
+          type: "radialBar"
+        },
+        labels: ["Tasks Completed"],
+        series: [20],
+        colors: ["#45a049"],
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              margin: 10,
+              size: "70%"
+            },
+            dataLabels: {
+              showOn: "always",
+              name: {
+                offsetY: -10,
+                show: true,
+                color: "#888",
+                fontSize: "12px",
+                fontFamily: 'Montserrat'
+              },
+              value: {
+                offsetY: -2,
+                color: "#111",
+                fontSize: "15px",
+                fontWeight: "bold",
+                fontFamily: 'Montserrat',
+                show: true
+              }
+            }
+          }
+        },
+        stroke: {
+          lineCap: "round"
+        }
+      };
 
-var options = {
-chart: {
-  height: 280,
-  type: "radialBar"
-},
-labels: ["Tasks Completed"],
-series: [80],
-colors: ["#45a049"],
-
-plotOptions: {
-  radialBar: {
-    hollow: {
-      margin: 10,
-      size: "70%"
-    },
-   
-    dataLabels: {
-      showOn: "always",
-      name: {
-        offsetY: -10,
-        show: true,
-        color: "#888",
-        fontSize: "15px",
-        fontFamily: 'Montserrat'
-      },
-      value: {
-        offsetY: -2,
-        color: "#111",
-        fontSize: "15px",
-        fontWeight: "bold",
-        fontFamily: 'Montserrat',
-        show: true
-      },     
-    }
-  }
-},
-
-stroke: {
-  lineCap: "round",
-},
-
-};
-
-var chart = new ApexCharts(document.querySelector("#chart"), options);
-
-chart.render();
+      var chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
+    });
 
 
 //task modal

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,19 +13,175 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <title>Document</title>
 </head>
+
 <body>
     <header class="header">
         <div class="header-title">
             <h3>Welcome <span>Farmer!</span></h3>
         </div>
         <div class="side-icons">
-            <a href="#" class="icon" id="addAnimalLink" data-bs-toggle="modal" data-bs-target="#myModal">
-                <i class='bx bx-add-to-queue'></i>
-            </a>
+            <div class="dropdown">
+                <button class="icon dropbtn">
+                    <i class='bx bx-add-to-queue'></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" id="milkProductionLink"><i class='bx bx-droplet'></i>&nbsp; Milk Production</a>
+                    <a href="#" id="treatmentLink"><i class='bx bx-injection'></i>&nbsp; Treatment</a>
+                    <a href="#" id="feedingLink"><i class='bx bx-cookie'></i>&nbsp; Feeds</a>
+                </div>
+            </div>
             <a href="#" class="icon"><i class='bx bx-bell'></i></a>
             <a href="#" class="icon"><i class='bx bx-envelope'></i></a>
             <a href="#" class="icon"><i class='bx bx-user'></i></a>
         </div>
+
+        <!-- Milk Production Modal -->
+<div id="milkProductionModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Milk Production</h3>
+        <form id="milkProductionForm">
+            <label for="productionDate">Production Date:</label>
+            <input type="date" id="productionDate" name="productionDate" required><br><br>
+
+            <label for="morningMilk">Morning Milk (liters):</label>
+            <input type="number" id="morningMilk" name="morningMilk" min="0" step="any" required><br><br>
+
+            <label for="eveningMilk">Evening Milk (liters):</label>
+            <input type="number" id="eveningMilk" name="eveningMilk" min="0" step="any" required><br><br>
+
+            <div class="form-bottom">
+            <button type="" class="btn-cancel">Cancel</button>
+            <button type="submit" class="btn-submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Treatment Modal -->
+<div id="treatmentModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Treatment</h3>
+        <form id="treatmentForm">
+
+            <!-- for all animals or one -->
+
+            
+
+
+               <label for="treatmentType">Treatment Type:</label>
+                <select id="treatmentType" name="treatmentType" required>
+                        <option value="vaccination">Vaccination</option>
+                        <option value="deworming">Deworming</option>
+                        <option value="injection">Injection</option>
+                        <option value="other">Other</option>
+                </select>
+
+
+
+                <label for="productDetails">Details/Product:</label>
+                <input type="text" id="productDetails" name="productDetails" required>
+
+                
+                
+                
+
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <label for="batchNumber">Batch Number:</label>
+                        <input type="text" id="batchNumber" name="batchNumber" required>
+                    </div>
+                    <div class="flex-item">
+                        <label for="dosage">Dosage:</label>
+                        <input type="text" id="dosage" name="dosage" required>
+                    </div>
+                </div>
+
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <label for="applicationMethod">Application Method:</label>
+                        <input type="text" id="applicationMethod" name="applicationMethod" required>
+                    </div>
+
+                    <div class="flex-item">
+                        <label for="treatmentLocation">Treatment Location:</label>
+                        <input type="text" id="treatmentLocation" name="treatmentLocation" required>
+                    </div>
+
+                
+                </div>
+
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <label for="treatmentDate">Treatment Date:</label>
+                        <input type="date" id="treatmentDate" name="treatmentDate" required>
+                    </div>
+
+                    <div class="flex-item">
+                        <label for="boosterDate">Booster Date:</label>
+                        <input type="date" id="boosterDate" name="boosterDate">
+                    </div>
+
+                </div>
+
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <label for="technician">Technician:</label>
+                <input type="text" id="technician" name="technician" required>
+                    </div>
+
+                    <div class="flex-item">
+                        <label for="totalCost">Total Cost:</label>
+                <input type="number" id="totalCost" name="totalCost" min="0" step="any" required>
+                    </div>
+
+                </div>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+
+                <fieldset>
+                    <legend>Apply to:</legend>
+                    <label>
+                        <input type="radio" name="animalSelection" value="all" checked> All Animals
+                    </label>
+                    <label>
+                        <input type="radio" name="animalSelection" value="specific"> Specific Animals
+                    </label>
+                </fieldset>
+
+                <label for="animalList" id="animalListLabel" style="display:none;">Select Animal:</label>
+                <select id="animalList" name="animalList" style="display:none;">
+                    <option value="animal1">Animal 1</option>
+                    <option value="animal2">Animal 2</option>
+                    <option value="animal3">Animal 3</option>
+                    <!-- Populate options dynamically from the database -->
+                </select>
+
+                
+                <div class="form-bottom">
+                    <button type="button" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-submit">Save</button>
+                </div>
+        </form>
+    </div>
+</div>
+
+<!-- Feeding Modal -->
+<div id="feedingModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Feeds</h3>
+        <form id="feedingForm">
+            <div class="form-bottom">
+                <button type="" class="btn-cancel">Cancel</button>
+                <button type="submit" class="btn-submit">Save</button>
+                </div>
+        </form>
+    </div>
+</div>
+
     </header>
 
     <section class="sidebar">
@@ -35,10 +192,10 @@
         <div class="menu">
             <ul>
                 <li><a href="dashboard.html" class="active"><i class='bx bx-home'></i>Dashboard</a></li>
-                <li><a href="animals.html"><i class="fa-solid fa-cow"></i>Animals</a></li>
+                <li><a href="animals.php"><i class="fa-solid fa-cow"></i>Animals</a></li>
                 <li><a href="tasks.html"><i class='bx bx-task'></i>Tasks</a></li>
                 <li><a href="equipments.html"><i class='bx bx-wrench'></i>Equipments</a></li>
-                <li><a href="#"><i class='bx bx-group'></i>Staff</a></li>
+                <li><a href="staff.html"><i class='bx bx-group'></i>Staff</a></li>
                 <li><a href="#"><i class='bx bx-bar-chart-square'></i>Reports</a></li>
             </ul>
         </div>
@@ -48,20 +205,20 @@
         <div class="container">
             <div class="stats">
                 <div class="card">
-                    Total Animals<br><br>
+                    Total Cows<br><br>
                     <h2>100</h2>
                 </div>
                 <div class="card">
-                    Total Dairy Cows<br><br>
+                    Female Cows<br><br>
                     <h2>60</h2>
                 </div>
                 <div class="card">
-                    Total Pigs<br><br>
-                    <h2>40</h2>
+                    Male Cows<br><br>
+                    <h2>20</h2>
                 </div>
                 <div class="card">
-                    Baby Animals<br><br>
-                    <h2>40</h2>
+                    Calves<br><br>
+                    <h2>20</h2>
                 </div>
                 <div class="card">
                     Health Status
@@ -81,8 +238,6 @@
                 </div>
             </div>
 
-            
-
             <div class="lv-4">
                 <div class="card">
                     <h4>Expenses Column Bar Chart</h4>
@@ -96,252 +251,366 @@
                 </div>
             </div>
 
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Animal</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addAnimalForm">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" required><br><br>
 
-        <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Animal</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <label for="tag_number">Tag Number:</label>
+                                <input type="text" id="tag_number" name="tag_number"><br><br>
+
+                                <label for="tag_color">Tag Color:</label>
+                                <input type="text" id="tag_color" name="tag_color"><br><br>
+
+                                <label for="registry_number">Registry Number:</label>
+                                <input type="text" id="registry_number" name="registry_number"><br><br>
+
+                                <label for="other_tag_number">Other Tag Number:</label>
+                                <input type="text" id="other_tag_number" name="other_tag_number"><br><br>
+
+                                <label for="description">Description:</label><br>
+                                <textarea id="description" name="description" rows="4"></textarea><br><br>
+
+                                <label for="gender">Gender:</label>
+                                <select id="gender" name="gender">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select><br><br>
+
+                                <label for="birth_date">Birth Date:</label>
+                                <input type="date" id="birth_date" name="birth_date"><br><br>
+
+                                <label for="type">Type:</label>
+                                <input type="text" id="type" name="type"><br><br>
+
+                                <label for="breed">Breed:</label>
+                                <input type="text" id="breed" name="breed"><br><br>
+
+                                <label for="coloring">Coloring:</label>
+                                <input type="text" id="coloring" name="coloring"><br><br>
+
+                                <label for="weight">Weight:</label>
+                                <input type="number" id="weight" name="weight"><br><br>
+
+                                <label for="birth_date">Last Treatment Date:</label>
+                                <input type="date" id="birth_date" name="birth_date"><br><br>
+
+                                <button type="submit" class="btn btn-primary mt-3">Add Animal</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <form id="addAnimalForm">
-                    <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required><br><br>
-
-                <label for="tag_number">Tag Number:</label>
-                <input type="text" id="tag_number" name="tag_number"><br><br>
-
-                <label for="tag_color">Tag Color:</label>
-                <input type="text" id="tag_color" name="tag_color"><br><br>
-
-                <label for="registry_number">Registry Number:</label>
-                <input type="text" id="registry_number" name="registry_number"><br><br>
-
-                <label for="other_tag_number">Other Tag Number:</label>
-                <input type="text" id="other_tag_number" name="other_tag_number"><br><br>
-
-                <label for="description">Description:</label><br>
-                <textarea id="description" name="description" rows="4"></textarea><br><br>
-
-                <label for="gender">Gender:</label>
-                <select id="gender" name="gender">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                </select><br><br>
-
-                <label for="birth_date">Birth Date:</label>
-                <input type="date" id="birth_date" name="birth_date"><br><br>
-
-                <label for="type">Type:</label>
-                <input type="text" id="type" name="type"><br><br>
-
-                <label for="breed">Breed:</label>
-                <input type="text" id="breed" name="breed"><br><br>
-
-                <label for="coloring">Coloring:</label>
-                <input type="text" id="coloring" name="coloring"><br><br>
-
-                <label for="weight">Weight:</label>
-                <input type="number" id="weight" name="weight"><br><br>
-
-                <label for="birth_date">Last Treatment Date:</label>
-                <input type="date" id="birth_date" name="birth_date"><br><br>
-
-
-                    <button type="submit" class="btn btn-primary mt-3">Add Animal</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 
         </div>
     </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-    // Doughnut Chart for Animal Distribution
-    const animalDistributionCtx = document.getElementById('animalDistributionChart').getContext('2d');
+    // Get the modal elements
+    const milkProductionModal = document.getElementById('milkProductionModal');
+    const treatmentModal = document.getElementById('treatmentModal');
+    const feedingModal = document.getElementById('feedingModal');
 
-    const animalDistributionData = {
-        labels: ['Cows', 'Pigs'],
-        datasets: [{
-            label: 'Animal Distribution',
-            data: [60, 40], // Update with actual data percentages or values
-            backgroundColor: ['rgb(31, 143, 59,0.5)', 'rgb(59, 200, 50,0.5)'], // Colors for cows and pigs
-            borderColor: ['rgb(31, 143, 59)', 'rgb(59, 200, 50)'], // Border colors for cows and pigs
-            borderWidth: 1, // Border width for segments
-            hoverOffset: 4 // Add hover offset for better visibility
-        }]
-    };
+    // Get the button that opens the modal
+    const milkProductionLink = document.getElementById('milkProductionLink');
+    const treatmentLink = document.getElementById('treatmentLink');
+    const feedingLink = document.getElementById('feedingLink');
 
-    const animalDistributionOptions = {
-        responsive: true,
-        cutout: '70%', // Adjust the cutout percentage here (e.g., '80%')
-        plugins: {
-            legend: {
-                position: 'bottom',
-                align: 'center',
-                labels: {
-                    padding: 20,
-                    boxWidth: 12,
-                    font: {
-                        size: 14
+    // Get the <span> element that closes the modal
+    const closeButtons = document.querySelectorAll('.close');
+
+    // Function to open modals
+    function openModal(modal) {
+        modal.style.display = 'block';
+    }
+
+    // Function to close modals
+    function closeModal(modal) {
+        modal.style.display = 'none';
+    }
+
+    // Event listeners for opening modals
+    milkProductionLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        openModal(milkProductionModal);
+    });
+
+    treatmentLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        openModal(treatmentModal);
+    });
+
+    feedingLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        openModal(feedingModal);
+    });
+
+    // Event listeners for closing modals
+    closeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            closeModal(milkProductionModal);
+            closeModal(treatmentModal);
+            closeModal(feedingModal);
+        });
+    });
+
+    // Close modal if user clicks outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target == milkProductionModal) {
+            closeModal(milkProductionModal);
+        }
+        if (event.target == treatmentModal) {
+            closeModal(treatmentModal);
+        }
+        if (event.target == feedingModal) {
+            closeModal(feedingModal);
+        }
+    });
+
+    // Prevent modal from closing if user clicks inside the modal content
+    milkProductionModal.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    treatmentModal.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    feedingModal.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    // Handle form submissions if needed
+    const milkProductionForm = document.getElementById('milkProductionForm');
+    const treatmentForm = document.getElementById('treatmentForm');
+    const feedingForm = document.getElementById('feedingForm');
+
+    milkProductionForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Handle milk production form submission logic here
+        closeModal(milkProductionModal);
+    });
+
+    treatmentForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Handle treatment form submission logic here
+        closeModal(treatmentModal);
+    });
+
+    feedingForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Handle feeding form submission logic here
+        closeModal(feedingModal);
+    });
+});
+
+// Toggle visibility of animal select based on radio button selection
+document.querySelectorAll('input[name="animalSelection"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            var animalListLabel = document.getElementById('animalListLabel');
+            var animalList = document.getElementById('animalList');
+
+            if (this.value === 'specific') {
+                animalListLabel.style.display = 'block';
+                animalList.style.display = 'block';
+            } else {
+                animalListLabel.style.display = 'none';
+                animalList.style.display = 'none';
+            }
+        });
+    });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Doughnut Chart for Animal Distribution
+            const animalDistributionCtx = document.getElementById('animalDistributionChart').getContext('2d');
+
+            const animalDistributionData = {
+                labels: ['Female', 'Male'],
+                datasets: [{
+                    label: 'Animal Distribution',
+                    data: [77, 33], // Update with actual data percentages or values
+                    backgroundColor: ['rgb(31, 143, 59,0.5)', 'rgb(59, 200, 50,0.5)'], // Colors for cows and pigs
+                    borderColor: ['rgb(31, 143, 59)', 'rgb(59, 200, 50)'], // Border colors for cows and pigs
+                    borderWidth: 1, // Border width for segments
+                    hoverOffset: 4 // Add hover offset for better visibility
+                }]
+            };
+
+            const animalDistributionOptions = {
+                responsive: true,
+                cutout: '70%', // Adjust the cutout percentage here (e.g., '80%')
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        align: 'center',
+                        labels: {
+                            padding: 20,
+                            boxWidth: 12,
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        enabled: true,
+                        padding: 10,
+                        cornerRadius: 5,
+                        caretSize: 8
                     }
                 }
-            },
-            tooltip: {
-                enabled: true,
-                padding: 10,
-                cornerRadius: 5,
-                caretSize: 8
-            }
-        }
-    };
+            };
 
-    const animalDistributionChart = new Chart(animalDistributionCtx, {
-        type: 'doughnut',
-        data: animalDistributionData,
-        options: animalDistributionOptions
-    });
+            const animalDistributionChart = new Chart(animalDistributionCtx, {
+                type: 'doughnut',
+                data: animalDistributionData,
+                options: animalDistributionOptions
+            });
 
-    // Line Chart for Milk Production
-    const milkProductionCtx = document.getElementById('milkProductionChart').getContext('2d');
+            // Line Chart for Milk Production
+            const milkProductionCtx = document.getElementById('milkProductionChart').getContext('2d');
 
-    const milkProductionData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-        datasets: [{
-            label: 'Milk Production (liters)',
-            data: [1500, 1700, 1600, 1800, 2000, 2100],
-            borderColor: 'rgb(31, 143, 59)',
-            backgroundColor: 'rgb(31, 143, 59,0.5)',
-            fill: true,
-            tension: 0.4
-        }]
-    };
+            const milkProductionData = {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: 'Milk Production (liters)',
+                    data: [1500, 1700, 1600, 1800, 2000, 2100],
+                    borderColor: 'rgb(31, 143, 59)',
+                    borderWidth: 0.7,
+                    backgroundColor: 'rgb(31, 143, 59,0.5)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            };
 
-    const milkProductionOptions = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top'
-            },
-            tooltip: {
-                enabled: true
-            }
-        },
-        scales: {
-            x: {
-                display: true,
-                title: {
-                    display: true,
-                    text: 'Month'
+            const milkProductionOptions = {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    },
+                    tooltip: {
+                        enabled: true
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Liters'
+                        }
+                    }
+                }
+            };
+
+            const milkProductionChart = new Chart(milkProductionCtx, {
+                type: 'line',
+                data: milkProductionData,
+                options: milkProductionOptions
+            });
+        });
+
+        // Column Bar Chart for Expenses
+        const expensesCtx = document.getElementById('expensesChart').getContext('2d');
+
+        const expensesData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+                label: 'Treatment',
+                data: [500, 600, 550, 700, 650, 800], // Update with actual treatment expenses data
+                backgroundColor: 'rgb(31, 143, 59, 0.6)', // Color for treatment bars
+                borderColor: 'rgb(31, 143, 59, 1)', // Border color for treatment bars
+                borderWidth: 0.4,
+                barThickness: 40 // Adjust bar thickness for better visibility
+            }, {
+                label: 'Equipments',
+                data: [300, 350, 400, 380, 420, 450], // Update with actual equipment expenses data
+                backgroundColor: 'rgba(54, 162, 235, 0.6)', // Color for equipment bars
+                borderColor: 'rgba(54, 162, 235, 1)', // Border color for equipment bars
+                borderWidth: 0.4,
+                barThickness: 40 // Adjust bar thickness for better visibility
+            }, {
+                label: 'Feeds',
+                data: [200, 250, 280, 300, 270, 320], // Update with actual feed expenses data
+                backgroundColor: 'rgba(75, 192, 192, 0.6)', // Color for feed bars
+                borderColor: 'rgba(75, 192, 192, 1)', // Border color for feed bars
+                borderWidth: 0.4,
+                barThickness: 40 // Adjust bar thickness for better visibility
+            }]
+        };
+
+        const expensesOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top'
+                },
+                tooltip: {
+                    enabled: true
                 }
             },
-            y: {
-                display: true,
-                title: {
-                    display: true,
-                    text: 'Liters'
+            scales: {
+                x: {
+                    stacked: false, // Do not stack bars on x-axis
+                    title: {
+                        display: true,
+                        text: 'Month'
+                    }
+                },
+                y: {
+                    beginAtZero: true, // Start y-axis from zero
+                    title: {
+                        display: true,
+                        text: 'Expenses'
+                    }
                 }
             }
-        }
-    };
+        };
 
-    const milkProductionChart = new Chart(milkProductionCtx, {
-        type: 'line',
-        data: milkProductionData,
-        options: milkProductionOptions
-    });
-});
+        const expensesChart = new Chart(expensesCtx, {
+            type: 'bar',
+            data: expensesData,
+            options: expensesOptions
+        });
 
-// Column Bar Chart for Expenses
-const expensesCtx = document.getElementById('expensesChart').getContext('2d');
+        // Handle modal events
+        const myModal = new bootstrap.Modal(document.getElementById('myModal'));
 
-const expensesData = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-    datasets: [{
-        label: 'Treatment',
-        data: [500, 600, 550, 700, 650, 800], // Update with actual treatment expenses data
-        backgroundColor: 'rgb(31, 143, 59, 0.6)', // Color for treatment bars
-        borderColor: 'rgb(31, 143, 59, 1)', // Border color for treatment bars
-        borderWidth: 1,
-        barThickness: 40 // Adjust bar thickness for better visibility
-    }, {
-        label: 'Equipments',
-        data: [300, 350, 400, 380, 420, 450], // Update with actual equipment expenses data
-        backgroundColor: 'rgba(54, 162, 235, 0.6)', // Color for equipment bars
-        borderColor: 'rgba(54, 162, 235, 1)', // Border color for equipment bars
-        borderWidth: 1,
-        barThickness: 40 // Adjust bar thickness for better visibility
-    }, {
-        label: 'Feeds',
-        data: [200, 250, 280, 300, 270, 320], // Update with actual feed expenses data
-        backgroundColor: 'rgba(75, 192, 192, 0.6)', // Color for feed bars
-        borderColor: 'rgba(75, 192, 192, 1)', // Border color for feed bars
-        borderWidth: 1,
-        barThickness: 40 // Adjust bar thickness for better visibility
-    }]
-};
+        // Open modal when clicking the "Add" icon
+        const addAnimalLink = document.getElementById('addAnimalLink');
+        addAnimalLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            myModal.show();
+        });
 
-const expensesOptions = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'top'
-        },
-        tooltip: {
-            enabled: true
-        }
-    },
-    scales: {
-        x: {
-            stacked: false, // Do not stack bars on x-axis
-            title: {
-                display: true,
-                text: 'Month'
+        // Handle form submission
+        const form = document.getElementById('addAnimalForm');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(form);
+            for (let [key, value] of formData.entries()) {
+                console.log(key + ': ' + value); // Replace with your form submission logic
             }
-        },
-        y: {
-            beginAtZero: true, // Start y-axis from zero
-            title: {
-                display: true,
-                text: 'Expenses'
-            }
-        }
-    }
-};
-
-const expensesChart = new Chart(expensesCtx, {
-    type: 'bar',
-    data: expensesData,
-    options: expensesOptions
-});
-// Handle modal events
-const myModal = new bootstrap.Modal(document.getElementById('myModal'));
-
-// Open modal when clicking the "Add" icon
-const addAnimalLink = document.getElementById('addAnimalLink');
-addAnimalLink.addEventListener('click', function(event) {
-    event.preventDefault();
-    myModal.show();
-});
-
-// Handle form submission
-const form = document.getElementById('addAnimalForm');
-form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const formData = new FormData(form);
-    for (let [key, value] of formData.entries()) {
-        console.log(key + ': ' + value); // Replace with your form submission logic
-    }
-    myModal.hide(); // Close modal after form submission
-});
-
+            myModal.hide(); // Close modal after form submission
+        });
     </script>
 </body>
+
 </html>
