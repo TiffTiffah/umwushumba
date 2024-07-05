@@ -39,7 +39,17 @@
     color: inherit; /* Inherit color from the parent (.add-animal-btn) */
     text-decoration: none;
 }
-
+.add-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    left: -180px; 
+    border: 1px solid #ddd;
+}
 /* Styling for the Animals Section */
 #animals-section {
     background-color: #fff;
@@ -90,6 +100,7 @@ table {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
+    left: 0px; 
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -114,7 +125,7 @@ table {
     display: block;
 }
 
-.dropbtn {
+.drop-btn {
     font-size: 13px;
     border: none;
     background-color: inherit;

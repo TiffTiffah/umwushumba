@@ -11,18 +11,212 @@
     <title>Animals</title>
 </head>
 <body>
-    <header class="header">
+<header class="header">
         <div class="header-title">
             <h3></h3>
         </div>
         <div class="side-icons">
-            <a href="#" class="icon" id="addAnimalLink" data-bs-toggle="modal" data-bs-target="#myModal">
-                <i class='bx bx-add-to-queue'></i>
-            </a>
+            <div class="dropdown">
+                <button class="icon dropbtn">
+                    <i class='bx bx-add-to-queue'></i>
+                </button>
+                <div class="add-dropdown-content">
+                    <a href="#" id="milkProductionLink"><i class='bx bx-droplet'></i>&nbsp; Milk Production</a>
+                    <a href="#" id="treatmentLink"><i class='bx bx-injection'></i>&nbsp; Treatment</a>
+                    <a href="#" id="feedingLink"><i class='bx bx-cookie'></i>&nbsp; Feeds</a>
+                    <a href="#" id="taskLink"><i class='bx bx-task'></i>&nbsp; Tasks</a>
+                </div>
+            </div>
             <a href="#" class="icon"><i class='bx bx-bell'></i></a>
-            <a href="#" class="icon"><i class='bx bx-envelope'></i></a>
             <a href="#" class="icon"><i class='bx bx-user'></i></a>
         </div>
+
+        <!-- Milk Production Modal -->
+<div id="milkProductionModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Milk Production</h3>
+        <form id="milkProductionForm">
+            <label for="productionDate">Production Date:</label>
+            <input type="date" id="productionDate" name="productionDate" required><br><br>
+
+            <label for="morningMilk">Morning Milk (liters):</label>
+            <input type="number" id="morningMilk" name="morningMilk" min="0" step="any" required><br><br>
+
+            <label for="eveningMilk">Evening Milk (liters):</label>
+            <input type="number" id="eveningMilk" name="eveningMilk" min="0" step="any" required><br><br>
+
+            <div class="form-bottom">
+            <button type="" class="btn-cancel">Cancel</button>
+            <button type="submit" class="btn-submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Treatment Modal -->
+<div id="treatmentModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Treatment</h3>
+        <form id="treatmentForm">
+
+            <!-- for all animals or one -->
+
+            
+
+
+               <label for="treatmentType">Treatment Type:</label>
+                <select id="treatmentType" name="treatmentType" required>
+                        <option value="vaccination">Vaccination</option>
+                        <option value="deworming">Deworming</option>
+                        <option value="injection">Injection</option>
+                        <option value="other">Other</option>
+                </select>
+
+
+
+                <label for="productDetails">Details/Product:</label>
+                <input type="text" id="productDetails" name="productDetails" required>
+
+                
+                
+                
+
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <label for="batchNumber">Batch Number:</label>
+                        <input type="text" id="batchNumber" name="batchNumber" required>
+                    </div>
+                    <div class="flex-item">
+                        <label for="dosage">Dosage:</label>
+                        <input type="text" id="dosage" name="dosage" required>
+                    </div>
+                </div>
+
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <label for="applicationMethod">Application Method:</label>
+                        <input type="text" id="applicationMethod" name="applicationMethod" required>
+                    </div>
+
+                    <div class="flex-item">
+                        <label for="treatmentLocation">Treatment Location:</label>
+                        <input type="text" id="treatmentLocation" name="treatmentLocation" required>
+                    </div>
+
+                
+                </div>
+
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <label for="treatmentDate">Treatment Date:</label>
+                        <input type="date" id="treatmentDate" name="treatmentDate" required>
+                    </div>
+
+                    <div class="flex-item">
+                        <label for="boosterDate">Booster Date:</label>
+                        <input type="date" id="boosterDate" name="boosterDate">
+                    </div>
+
+                </div>
+
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <label for="technician">Technician:</label>
+                <input type="text" id="technician" name="technician" required>
+                    </div>
+
+                    <div class="flex-item">
+                        <label for="totalCost">Total Cost:</label>
+                <input type="number" id="totalCost" name="totalCost" min="0" step="any" required>
+                    </div>
+
+                </div>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+
+                <fieldset>
+                    <legend>Apply to:</legend>
+                    <label>
+                        <input type="radio" name="animalSelection" value="all" checked> All Animals
+                    </label>
+                    <label>
+                        <input type="radio" name="animalSelection" value="specific"> Specific Animals
+                    </label>
+                </fieldset>
+
+                <label for="animalList" id="animalListLabel" style="display:none;">Select Animal:</label>
+                <select id="animalList" name="animalList" style="display:none;">
+                    <option value="animal1">Animal 1</option>
+                    <option value="animal2">Animal 2</option>
+                    <option value="animal3">Animal 3</option>
+                    <!-- Populate options dynamically from the database -->
+                </select>
+
+                
+                <div class="form-bottom">
+                    <button type="button" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-submit">Save</button>
+                </div>
+        </form>
+    </div>
+</div>
+
+<!-- Feeding Modal -->
+<div id="feedingModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Feeds</h3>
+        <form id="feedsForm">
+            <label for="feedDetails">Feed Details:</label>
+            <input type="text" id="feedDetails" name="feedDetails" required>
+
+            <label for="feedWeight">Feed Weight (kg):</label>
+            <input type="number" id="feedWeight" name="feedWeight" min="0" step="any" required>
+
+            <label for="cost">Cost (Rwf):</label>
+            <input type="number" id="cost" name="cost" min="0" step="any" required>
+
+            <label for="feedingDate">Feeding Date:</label>
+            <input type="date" id="feedingDate" name="feedingDate" required>
+
+            <label for="details">Details/Notes:</label>
+            <textarea id="details" name="details" rows="4"></textarea>
+
+            
+            <div class="form-bottom">
+                <button type="button" class="btn-cancel">Cancel</button>
+                <button type="submit" class="btn-submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Task Modal -->
+<div id="taskModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Tasks</h3>
+
+        <form id="taskForm">
+            <label for="taskName">Task:</label><br>
+            <input type="text" id="taskName" name="taskName" required><br><br>
+            
+            <label for="dueDate">Due Date:</label><br>
+            <input type="date" id="dueDate" name="dueDate" required><br><br>
+            
+            <div class="form-bottom">
+                <button type="button" class="btn-cancel">Cancel</button>
+                <button type="submit" class="btn-submit">Add Task</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
     </header>
 
     <section class="sidebar">
@@ -31,11 +225,10 @@
         </div>
         <div class="menu">
             <ul>
-                <li><a href="dashboard.html"><i class='bx bx-home'></i>Dashboard</a></li>
-                <li><a href="animals.html" class="active"><i class="fa-solid fa-cow"></i>Animals</a></li>
-                <li><a href="tasks.html"><i class='bx bx-task'></i>Tasks</a></li>
-                <li><a href="equipments.html"><i class='bx bx-wrench'></i>Equipments</a></li>
-                <li><a href="staff.html"><i class='bx bx-group'></i>Staff</a></li>
+                <li><a href="dashboard.php"><i class='bx bx-home'></i>Dashboard</a></li>
+                <li><a href="animals.php" class="active"><i class="fa-solid fa-cow"></i>Animals</a></li>
+                <li><a href="expenses.php"><i class="fa-solid fa-coins"></i>Expenses</a></li>
+                <li><a href="equipments.php"><i class='bx bx-wrench'></i>Equipments</a></li>
                 <li><a href="#"><i class='bx bx-bar-chart-square'></i>Reports</a></li>
             </ul>
         </div>
@@ -77,10 +270,9 @@
                                         <td>{$health_status}</td>
                                         <td>
                                             <div class='dropdown'>
-                                                <button class='dropbtn'><i class='fa-solid fa-ellipsis-vertical'></i></button>
+                                                <button class='drop-btn'><i class='fa-solid fa-ellipsis-vertical'></i></button>
                                                 <div class='dropdown-content'>
-                                                    <a href='#'><i class='fa-regular fa-pen-to-square'></i>&nbsp; Edit</a>
-                                                    <a href='#'><i class='bx bx-injection'></i>&nbsp; Treatments</a>
+                                                    <a href='#' class='editLink' data-id='{$id}'><i class='fa-regular fa-pen-to-square'></i>&nbsp; Edit</a>
                                                     <a href='#'><i class='bx bx-trash trash-icon'></i>&nbsp; Delete</a>
                                                 </div>
                                             </div>
@@ -97,8 +289,302 @@
                         ?>
                     </tbody>
                 </table>
+                        <!-- Edit Profile Modal -->
+                <div id="animalModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3>Edit Animal Details</h3>
+
+                        <form id="animalForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                        <div class="form-group">
+                            <label for="name">Names:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="flex-container">
+                            <div class="flex-item">
+                            <div class="form-group">
+                            <label for="tag_number">RFID:</label>
+                        <input type="text" id="tag_number" name="tag_number">
+                        </div>
+                            </div>
+
+                            <div class="flex-item">
+                            <div class="form-group"> 
+                            <label for="breed">Breed:</label>
+                            <input type="text" id="breed" name="breed" required>
+                        </div>
+                            </div>
+                        </div>
+
+
+                        <div class="flex-container">
+                            <div class="flex-item">
+                            <div class="form-group">
+                            <label for="gender">Gender:</label>
+                        <select id="gender" name="gender">
+                            <option ></option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            
+                        </select>
+                        </div>
+                            </div>
+
+                            <div class="flex-item">
+                            <div class="form-group">
+                            <label for="dob">Birth Date:</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-container">
+                            <div class="flex-item">
+
+                            </div>
+
+                            <div class="flex-item">
+
+                            </div>
+                        </div>
+                            
+
+                        <div class="form-group">
+                            <label for="progeny">Progeny:</label>
+                            <select id="progeny" name="progeny" required>
+                                <option value="default" selected disabled>Select</option>
+                                <option value="progeny_yes">Yes</option>
+                                <option value="progeny_no">No</option>
+                            </select>
+                        </div>
+                        
+                        <div id="yes_progeny" class="form-group hidden">
+                            <label for="number_of_kids">Number of Kids:</label>
+                            <input type="number" id="number_of_kids" name="number_of_kids">
+                        </div>
+                        
+                        <div id="no_progeny" class="form-group hidden">
+                            <!-- Add content for 'No' option if needed -->
+                        </div>
+                        
+                                                
+                        <div class="form-group">
+                            <label for="health_status">Health Status:</label>
+                            <input type="text" id="health_status" name="health_status" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="last_vaccine">Last Vaccination Date:</label>
+                            <input type="date" id="last_vaccine" name="last_vaccine" required>
+                        </div>
+                      
+                        
+                        <div class="form-bottom">
+                            <button type="button" class="btn-cancel">Cancel</button>
+                            <button type="submit" class="btn-submit">Add Task</button>
+                        </div>
+                    </form>
+
+
+                    </div>
+                </div>
             </section>
         </div>
     </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const milkProductionModal = document.getElementById('milkProductionModal');
+    const treatmentModal = document.getElementById('treatmentModal');
+    const feedingModal = document.getElementById('feedingModal');
+    const taskModal = document.getElementById('taskModal');
+    const animalModal = document.getElementById('animalModal');
+
+    const milkProductionLink = document.getElementById('milkProductionLink');
+    const treatmentLink = document.getElementById('treatmentLink');
+    const feedingLink = document.getElementById('feedingLink');
+    const taskLink = document.getElementById('taskLink');
+    const editLinks = document.querySelectorAll('.editLink');
+
+    const closeButtons = document.querySelectorAll('.close');
+
+    function openModal(modal) {
+        modal.style.display = 'block';
+    }
+
+    function closeModal(modal) {
+        modal.style.display = 'none';
+    }
+
+    if (milkProductionLink) {
+        milkProductionLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            openModal(milkProductionModal);
+        });
+    }
+
+    if (treatmentLink) {
+        treatmentLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            openModal(treatmentModal);
+        });
+    }
+
+    if (feedingLink) {
+        feedingLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            openModal(feedingModal);
+        });
+    }
+
+    if (taskLink) {
+        taskLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            openModal(taskModal);
+        });
+    }
+
+    editLinks.forEach(function(editLink) {
+        editLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            openModal(animalModal);
+            const animalId = this.dataset.id;
+            fetchAnimalData(animalId);
+        });
+    });
+
+    closeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            closeModal(milkProductionModal);
+            closeModal(treatmentModal);
+            closeModal(feedingModal);
+            closeModal(taskModal);
+            closeModal(animalModal);
+        });
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target == milkProductionModal) {
+            closeModal(milkProductionModal);
+        }
+        if (event.target == treatmentModal) {
+            closeModal(treatmentModal);
+        }
+        if (event.target == feedingModal) {
+            closeModal(feedingModal);
+        }
+        if (event.target == taskModal) {
+            closeModal(taskModal);
+        }
+        if (event.target == animalModal) {
+            closeModal(animalModal);
+        }
+    });
+
+    milkProductionModal.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    treatmentModal.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    feedingModal.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    taskModal.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    animalModal.addEventListener('click', function(event){
+        event.stopPropagation();
+    });
+
+    const milkProductionForm = document.getElementById('milkProductionForm');
+    const treatmentForm = document.getElementById('treatmentForm');
+    const feedingForm = document.getElementById('feedingForm');
+    const taskForm = document.getElementById('taskForm');
+    const animalForm = document.getElementById('animalForm');
+
+    if (milkProductionForm) {
+        milkProductionForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            closeModal(milkProductionModal);
+        });
+    }
+
+    if (treatmentForm) {
+        treatmentForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            closeModal(treatmentModal);
+        });
+    }
+
+    if (feedingForm) {
+        feedingForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            closeModal(feedingModal);
+        });
+    }
+
+    if (taskForm) {
+        taskForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            closeModal(taskModal);
+        });
+    }
+
+    if (animalForm) {
+        animalForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            closeModal(animalModal);
+        });
+    }
+});
+
+// Toggle visibility of animal select based on radio button selection
+document.querySelectorAll('input[name="animalSelection"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+        var animalListLabel = document.getElementById('animalListLabel');
+        var animalList = document.getElementById('animalList');
+
+        if (this.value === 'specific') {
+            animalListLabel.style.display = 'block';
+            animalList.style.display = 'block';
+        } else {
+            animalListLabel.style.display = 'none';
+            animalList.style.display = 'none';
+        }
+    });
+});
+
+function fetchAnimalData(animalId) {
+    fetch('fetch_animal.php?id=' + animalId)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('name').value = data.name;
+            document.getElementById('tag_number').value = data.tag_number;
+            document.getElementById('breed').value = data.breed;
+            document.getElementById('gender').value = data.gender;
+            document.getElementById('dob').value = data.dob;
+            document.getElementById('progeny').value = data.progeny ? 'progeny_yes' : 'progeny_no';
+            document.getElementById('number_of_kids').value = data.number_of_kids;
+            document.getElementById('health_status').value = data.health_status;
+            document.getElementById('last_vaccine').value = data.last_vaccine;
+
+            if (data.progeny) {
+                document.getElementById('yes_progeny').classList.remove('hidden');
+                document.getElementById('no_progeny').classList.add('hidden');
+            } else {
+                document.getElementById('yes_progeny').classList.add('hidden');
+                document.getElementById('no_progeny').classList.remove('hidden');
+            }
+        })
+        .catch(error => console.error('Error fetching animal data:', error));
+}
+
+
+</script>
 </body>
 </html>

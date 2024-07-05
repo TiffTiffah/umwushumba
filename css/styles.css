@@ -518,3 +518,85 @@ fieldset{
 legend{
     font-size: 15px;
 }
+.alert {
+    position: fixed;
+    top: 20px;
+    right: -300px;
+    padding: 20px;
+    background-color: #45a049;
+    color: white;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 0; /* Initially hidden */
+    transition: right 0.5s ease, opacity 0.5s ease;
+}
+.alert.show {
+    right: 20px;
+    opacity: 1;
+}
+.alert.error {
+    background-color: red;
+}
+/* Button styles */
+.add-animal-btn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.add-animal-btn:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+.add-animal-btn a {
+    color: inherit; /* Inherit color from the parent (.add-animal-btn) */
+    text-decoration: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.table a {
+    color: black; 
+    text-decoration: none; 
+}
+
+.table th {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.table-striped tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the Animals Section */
+#animals-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#animals-section h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+}

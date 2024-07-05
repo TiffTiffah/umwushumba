@@ -1,3 +1,7 @@
+<?php
+require 'db.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,55 +32,61 @@
                     <a href="#" id="milkProductionLink"><i class='bx bx-droplet'></i>&nbsp; Milk Production</a>
                     <a href="#" id="treatmentLink"><i class='bx bx-injection'></i>&nbsp; Treatment</a>
                     <a href="#" id="feedingLink"><i class='bx bx-cookie'></i>&nbsp; Feeds</a>
+                    <a href="#" id="taskLink"><i class='bx bx-task'></i>&nbsp; Tasks</a>
                 </div>
             </div>
             <a href="#" class="icon"><i class='bx bx-bell'></i></a>
-            <a href="#" class="icon"><i class='bx bx-envelope'></i></a>
             <a href="#" class="icon"><i class='bx bx-user'></i></a>
         </div>
 
         <!-- Milk Production Modal -->
-<div id="milkProductionModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h3>Milk Production</h3>
-        <form id="milkProductionForm">
-            <label for="productionDate">Production Date:</label>
-            <input type="date" id="productionDate" name="productionDate" required><br><br>
+    <div id="milkProductionModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Milk Production</h3>
+            <form id="milkProductionForm" action="add_milk.php" method="POST">
+                <label for="productionDate">Production Date:</label>
+                <input type="date" id="productionDate" name="productionDate" required><br><br>
 
-            <label for="morningMilk">Morning Milk (liters):</label>
-            <input type="number" id="morningMilk" name="morningMilk" min="0" step="any" required><br><br>
+                <label for="morningMilk">Morning Milk (liters):</label>
+                <input type="number" id="morningMilk" name="morningMilk" min="0" step="any" required><br><br>
 
-            <label for="eveningMilk">Evening Milk (liters):</label>
-            <input type="number" id="eveningMilk" name="eveningMilk" min="0" step="any" required><br><br>
+                <label for="eveningMilk">Evening Milk (liters):</label>
+                <input type="number" id="eveningMilk" name="eveningMilk" min="0" step="any" required><br><br>
 
-            <div class="form-bottom">
-            <button type="" class="btn-cancel">Cancel</button>
-            <button type="submit" class="btn-submit">Save</button>
-            </div>
-        </form>
+                <div class="form-bottom">
+                    <button type="button" class="btn-cancel">Cancel</button>
+                    <button type="submit" name="submit" class="btn-submit">Save</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
 <!-- Treatment Modal -->
 <div id="treatmentModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
         <h3>Treatment</h3>
-        <form id="treatmentForm">
+        <form id="treatmentForm" action="add_treatment.php" method="POST">
 
             <!-- for all animals or one -->
 
             
 
 
-               <label for="treatmentType">Treatment Type:</label>
-                <select id="treatmentType" name="treatmentType" required>
-                        <option value="vaccination">Vaccination</option>
-                        <option value="deworming">Deworming</option>
-                        <option value="injection">Injection</option>
-                        <option value="other">Other</option>
-                </select>
+            <label for="treatmentType">Treatment Type:</label>
+<select id="treatmentType" name="treatmentType" required>
+    <option value="vaccination">Vaccination</option>
+    <option value="deworming">Deworming</option>
+    <option value="injection">Injection</option>
+    <option value="medication">Medication</option>
+    <option value="hoof trim">Hoof Trim</option>
+    <option value="surgical procedure">Surgical Procedure</option>
+    <option value="castration">Castration</option>
+    <option value="dental procedure">Dental Procedure</option>
+    <option value="other">Other</option>
+</select>
+
 
 
 
@@ -101,12 +111,18 @@
                 <div class="flex-container">
                     <div class="flex-item">
                         <label for="applicationMethod">Application Method:</label>
-                        <input type="text" id="applicationMethod" name="applicationMethod" required>
+<select id="applicationMethod" name="applicationMethod" required>
+    <option value="">Select an option</option>
+    <option value="Intravenously">Intravenously</option>
+    <option value="Orally">Orally</option>
+    <option value="Topically">Topically</option>
+    <option value="Intramuscular">Intramuscular</option>
+</select>
                     </div>
 
                     <div class="flex-item">
                         <label for="treatmentLocation">Treatment Location:</label>
-                        <input type="text" id="treatmentLocation" name="treatmentLocation" required>
+                        <input type="text" id="treatmentLocation" name="treatmentLocation" required placeholder="Neck, Rump">
                     </div>
 
                 
@@ -132,7 +148,7 @@
                     </div>
 
                     <div class="flex-item">
-                        <label for="totalCost">Total Cost:</label>
+                        <label for="totalCost">Total Cost(Rwf):</label>
                 <input type="number" id="totalCost" name="totalCost" min="0" step="any" required>
                     </div>
 
@@ -162,7 +178,7 @@
                 
                 <div class="form-bottom">
                     <button type="button" class="btn-cancel">Cancel</button>
-                    <button type="submit" class="btn-submit">Save</button>
+                    <button type="submit" name="submit" class="btn-submit">Save</button>
                 </div>
         </form>
     </div>
@@ -173,14 +189,53 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <h3>Feeds</h3>
-        <form id="feedingForm">
+        <form id="feedsForm" action="add_feed.php" method="POST">
+            <label for="feedDetails">Feed Details:</label>
+            <input type="text" id="feedDetails" name="feedDetails" required>
+
+            <label for="feedWeight">Feed Weight (kg):</label>
+            <input type="number" id="feedWeight" name="feedWeight" min="0" step="any" required>
+
+            <label for="feed_cost">Cost (Rwf):</label>
+            <input type="number" id="feed_cost" name="feed_cost" min="0" step="any" required>
+
+            <label for="feedingDate">Feeding Date:</label>
+            <input type="date" id="feedingDate" name="feedingDate" required>
+
+            <label for="feed_details">Details/Notes:</label>
+            <textarea id="feed_details" name="feed_details" rows="4"></textarea>
+
+            
             <div class="form-bottom">
-                <button type="" class="btn-cancel">Cancel</button>
-                <button type="submit" class="btn-submit">Save</button>
-                </div>
+                <button type="button" class="btn-cancel">Cancel</button>
+                <button type="submit" name="submit" class="btn-submit">Save</button>
+            </div>
         </form>
     </div>
 </div>
+
+<!-- Task Modal -->
+<div id="taskModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Tasks</h3>
+
+        <form id="taskForm" action="add_task.php" method="POST">
+            <label for="taskName">Task:</label><br>
+            <input type="text" id="taskName" name="taskName" required><br><br>
+            
+            <label for="dueDate">Due Date:</label><br>
+            <input type="date" id="dueDate" name="dueDate" required><br><br>
+            
+            <div class="form-bottom">
+                <button type="button" class="btn-cancel">Cancel</button>
+                <button type="submit" name="submit" class="btn-submit">Add Task</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
 
     </header>
 
@@ -191,11 +246,10 @@
         </div>
         <div class="menu">
             <ul>
-                <li><a href="dashboard.html" class="active"><i class='bx bx-home'></i>Dashboard</a></li>
+                <li><a href="dashboard.php" class="active"><i class='bx bx-home'></i>Dashboard</a></li>
                 <li><a href="animals.php"><i class="fa-solid fa-cow"></i>Animals</a></li>
-                <li><a href="tasks.html"><i class='bx bx-task'></i>Tasks</a></li>
-                <li><a href="equipments.html"><i class='bx bx-wrench'></i>Equipments</a></li>
-                <li><a href="staff.html"><i class='bx bx-group'></i>Staff</a></li>
+                <li><a href="expenses.php"><i class="fa-solid fa-coins"></i>Expenses</a></li>
+                <li><a href="equipments.php"><i class='bx bx-wrench'></i>Equipments</a></li>
                 <li><a href="#"><i class='bx bx-bar-chart-square'></i>Reports</a></li>
             </ul>
         </div>
@@ -203,6 +257,17 @@
 
     <main class="main">
         <div class="container">
+
+        <?php
+    if (isset($_GET['status'])) {
+        if ($_GET['status'] == 'success') {
+            echo "<p id='alert' class='alert'>Record added successfully!</p>";
+        } else if ($_GET['status'] == 'error') {
+            echo "<p id='alertError' class='alert error'>Error adding record: {$_GET['message']}</p>";
+        }
+    }
+    ?>
+
             <div class="stats">
                 <div class="card">
                     Total Cows<br><br>
@@ -315,19 +380,42 @@
     </main>
 
     <script>
+        //alerts
         document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('status')) {
+                const status = urlParams.get('status');
+                const alert = document.getElementById(status === 'success' ? 'alert' : 'alertError');
+                alert.classList.add('show');
+                setTimeout(() => {
+                    alert.classList.remove('show');
+                    setTimeout(() => {
+                        alert.style.opacity = 0;
+                        // Remove the status from URL
+                        history.replaceState(null, '', window.location.pathname);
+                    }, 500); // Wait for the slide-out animation to complete
+                }, 1000); // Show the alert for 1 second
+            }
+        });
+
+
+
+    document.addEventListener('DOMContentLoaded', function() {
     // Get the modal elements
     const milkProductionModal = document.getElementById('milkProductionModal');
     const treatmentModal = document.getElementById('treatmentModal');
     const feedingModal = document.getElementById('feedingModal');
+    const taskModal = document.getElementById('taskModal');
 
     // Get the button that opens the modal
     const milkProductionLink = document.getElementById('milkProductionLink');
     const treatmentLink = document.getElementById('treatmentLink');
     const feedingLink = document.getElementById('feedingLink');
+    const taskLink = document.getElementById('taskLink');
 
     // Get the <span> element that closes the modal
     const closeButtons = document.querySelectorAll('.close');
+    const cancel = document.querySelectorAll('.btn-cancel')
 
     // Function to open modals
     function openModal(modal) {
@@ -355,12 +443,27 @@
         openModal(feedingModal);
     });
 
+    taskLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        openModal(taskModal);
+    });
+
     // Event listeners for closing modals
     closeButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             closeModal(milkProductionModal);
             closeModal(treatmentModal);
             closeModal(feedingModal);
+            closeModal(taskModal);
+        });
+    });
+
+    cancel.forEach(function(button) {
+        button.addEventListener('click', function() {
+            closeModal(milkProductionModal);
+            closeModal(treatmentModal);
+            closeModal(feedingModal);
+            closeModal(taskModal);
         });
     });
 
@@ -374,6 +477,9 @@
         }
         if (event.target == feedingModal) {
             closeModal(feedingModal);
+        }
+        if (event.target == taskModal) {
+            closeModal(taskModal);
         }
     });
 
@@ -390,28 +496,41 @@
         event.stopPropagation();
     });
 
+    taskModal.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
     // Handle form submissions if needed
     const milkProductionForm = document.getElementById('milkProductionForm');
     const treatmentForm = document.getElementById('treatmentForm');
     const feedingForm = document.getElementById('feedingForm');
+    const taskForm = document.getElementById('taskForm');
 
-    milkProductionForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Handle milk production form submission logic here
-        closeModal(milkProductionModal);
-    });
 
-    treatmentForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Handle treatment form submission logic here
-        closeModal(treatmentModal);
-    });
 
-    feedingForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Handle feeding form submission logic here
-        closeModal(feedingModal);
-    });
+    // milkProductionForm.addEventListener('submit', function(event) {
+    //     event.preventDefault();
+    //     // Handle milk production form submission logic here
+    //     closeModal(milkProductionModal);
+    // });
+
+    // treatmentForm.addEventListener('submit', function(event) {
+    //     event.preventDefault();
+    //     // Handle treatment form submission logic here
+    //     closeModal(treatmentModal);
+    // });
+
+    // feedingForm.addEventListener('submit', function(event) {
+    //     event.preventDefault();
+    //     // Handle feeding form submission logic here
+    //     closeModal(feedingModal);
+    // });
+
+    // taskForm.addEventListener('submit', function(event) {
+    //     event.preventDefault();
+    //     // Handle task form submission logic here
+    //     closeModal(taskModal);
+    // });
 });
 
 // Toggle visibility of animal select based on radio button selection

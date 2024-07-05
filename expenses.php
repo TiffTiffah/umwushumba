@@ -32,11 +32,10 @@
         </div>
         <div class="menu">
             <ul>
-                <li><a href="dashboard.html"><i class='bx bx-home'></i>Dashboard</a></li>
-                <li><a href="animals.html"><i class="fa-solid fa-cow"></i>Animals</a></li>
-                <li><a href="tasks.html"  class="active"><i class='bx bx-task'></i>Tasks</a></li>
-                <li><a href="equipments.html"><i class='bx bx-wrench'></i>Equipments</a></li>
-                <li><a href="staff.html"><i class='bx bx-group'></i>Staff</a></li>
+                <li><a href="dashboard.php"><i class='bx bx-home'></i>Dashboard</a></li>
+                <li><a href="animals.php"><i class="fa-solid fa-cow"></i>Animals</a></li>
+                <li><a href="expenses.php"  class="active"><i class="fa-solid fa-coins"></i></i>Expenses</a></li>
+                <li><a href="equipments.php"><i class='bx bx-wrench'></i>Equipments</a></li>
                 <li><a href="#"><i class='bx bx-bar-chart-square'></i>Reports</a></li>
             </ul>
         </div>
@@ -178,7 +177,144 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the modal elements
+    const milkProductionModal = document.getElementById('milkProductionModal');
+    const treatmentModal = document.getElementById('treatmentModal');
+    const feedingModal = document.getElementById('feedingModal');
+    const taskModal = document.getElementById('taskModal');
 
+    // Get the button that opens the modal
+    const milkProductionLink = document.getElementById('milkProductionLink');
+    const treatmentLink = document.getElementById('treatmentLink');
+    const feedingLink = document.getElementById('feedingLink');
+    const taskLink = document.getElementById('taskLink');
+
+    // Get the <span> element that closes the modal
+    const closeButtons = document.querySelectorAll('.close');
+
+    // Function to open modals
+    function openModal(modal) {
+        modal.style.display = 'block';
+    }
+
+    // Function to close modals
+    function closeModal(modal) {
+        modal.style.display = 'none';
+    }
+
+    // Event listeners for opening modals
+    milkProductionLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        openModal(milkProductionModal);
+    });
+
+    treatmentLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        openModal(treatmentModal);
+    });
+
+    feedingLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        openModal(feedingModal);
+    });
+
+    taskLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        openModal(taskModal);
+    });
+
+    // Event listeners for closing modals
+    closeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            closeModal(milkProductionModal);
+            closeModal(treatmentModal);
+            closeModal(feedingModal);
+            closeModal(taskModal);
+        });
+    });
+
+    // Close modal if user clicks outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target == milkProductionModal) {
+            closeModal(milkProductionModal);
+        }
+        if (event.target == treatmentModal) {
+            closeModal(treatmentModal);
+        }
+        if (event.target == feedingModal) {
+            closeModal(feedingModal);
+        }
+        if (event.target == taskModal) {
+            closeModal(taskModal);
+        }
+    });
+
+    // Prevent modal from closing if user clicks inside the modal content
+    milkProductionModal.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    treatmentModal.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    feedingModal.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    taskModal.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    // Handle form submissions if needed
+    const milkProductionForm = document.getElementById('milkProductionForm');
+    const treatmentForm = document.getElementById('treatmentForm');
+    const feedingForm = document.getElementById('feedingForm');
+    const taskForm = document.getElementById('taskForm');
+
+
+
+    milkProductionForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Handle milk production form submission logic here
+        closeModal(milkProductionModal);
+    });
+
+    treatmentForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Handle treatment form submission logic here
+        closeModal(treatmentModal);
+    });
+
+    feedingForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Handle feeding form submission logic here
+        closeModal(feedingModal);
+    });
+
+    taskForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Handle task form submission logic here
+        closeModal(taskModal);
+    });
+});
+
+// Toggle visibility of animal select based on radio button selection
+document.querySelectorAll('input[name="animalSelection"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            var animalListLabel = document.getElementById('animalListLabel');
+            var animalList = document.getElementById('animalList');
+
+            if (this.value === 'specific') {
+                animalListLabel.style.display = 'block';
+                animalList.style.display = 'block';
+            } else {
+                animalListLabel.style.display = 'none';
+                animalList.style.display = 'none';
+            }
+        });
+    });
 
 
 
